@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>NoVig</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css"/>
+</head>
+<body>
+<div class="shell">
+
+  <header>
+    <div class="logo">
+      <span class="logo-mark">NV</span>
+      <span class="logo-text">NoVig</span>
+    </div>
+    <button class="fanduel-btn" id="openFanduel">FANDUEL ↗</button>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="calc">CALCULATOR</button>
+    <button class="tab" data-tab="history">HISTORY</button>
+  </div>
+
+  <div class="tab-content active" id="tab-calc">
+
+    <!-- SIDE LABELS -->
+    <div class="section-label">LABEL THE TWO SIDES</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>SIDE A</label>
+        <input type="text" id="labelA" placeholder="OVER" maxlength="10"/>
+      </div>
+      <div class="divider-vert"></div>
+      <div class="input-group">
+        <label>SIDE B</label>
+        <input type="text" id="labelB" placeholder="UNDER" maxlength="10"/>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:14px;">FANDUEL ODDS (American)</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label id="headA">SIDE A</label>
+        <input type="number" id="oddsOver" placeholder="-114"/>
+      </div>
+      <div class="divider-vert"></div>
+      <div class="input-group">
+        <label id="headB">SIDE B</label>
+        <input type="number" id="oddsUnder" placeholder="-114"/>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:12px;">POLYMARKET PRICES (¢)</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label id="headPA">SIDE A</label>
+        <input type="number" id="polyOver" placeholder="41"/>
+      </div>
+      <div class="divider-vert"></div>
+      <div class="input-group">
+        <label id="headPB">SIDE B</label>
+        <input type="number" id="polyUnder" placeholder="64"/>
+      </div>
+    </div>
+
+    <div class="input-row single" style="margin-top:8px;">
+      <div class="input-group full">
+        <label>MARKET NAME (optional)</label>
+        <input type="text" id="marketLabel" placeholder="e.g. DET vs CHA — 1H Moneyline"/>
+      </div>
+    </div>
+
+    <button id="calcBtn">CALCULATE EDGE</button>
+
+    <div id="result" class="result hidden">
+      <div class="two-way">
+        <div class="tw-header">
+          <div class="tw-side"></div>
+          <div class="tw-col">POLY</div>
+          <div class="tw-col">TRUE</div>
+          <div class="tw-col">EDGE</div>
+        </div>
+        <div class="tw-row" id="row-over">
+          <div class="tw-side" id="res-labelA">BUY A</div>
+          <div class="tw-col" id="v-over-poly">--</div>
+          <div class="tw-col" id="v-over-true">--</div>
+          <div class="tw-col" id="v-over-edge">--</div>
+        </div>
+        <div class="tw-row" id="row-under">
+          <div class="tw-side" id="res-labelB">BUY B</div>
+          <div class="tw-col" id="v-under-poly">--</div>
+          <div class="tw-col" id="v-under-true">--</div>
+          <div class="tw-col" id="v-under-edge">--</div>
+        </div>
+      </div>
+      <div id="verdict" class="verdict"></div>
+      <div id="exitTarget" class="exit-target hidden"></div>
+      <button id="saveBtn" class="save-btn hidden">SAVE TO HISTORY</button>
+    </div>
+
+    <div class="divider-h"></div>
+    <div class="howto">
+      <div class="howto-title">HOW TO USE</div>
+      <ol>
+        <li>Label the two sides (Over/Under, team names, Yes/No)</li>
+        <li>Enter FanDuel American odds for both sides</li>
+        <li>Enter the Polymarket prices in cents (¢)</li>
+        <li>Hit Calculate — green row = your trade</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="tab-content" id="tab-history">
+    <div class="history-header">
+      <div class="history-stats" id="historyStats"></div>
+      <button class="clear-btn" id="clearHistory">CLEAR ALL</button>
+    </div>
+    <div id="historyList" class="history-list"></div>
+    <div id="historyEmpty" class="history-empty hidden">No trades saved yet.</div>
+  </div>
+
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
